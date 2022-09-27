@@ -52,9 +52,14 @@ ul{
     padding: 0;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
 .headbot{
     display: flex;
-    justify-content:center;
+    justify-content: space-between;
     gap: 150px;
     align-items: center;
     padding-top: 80px;
@@ -76,13 +81,120 @@ ul{
     font-size: 18px;
 }
 
-button{
+.button{
     background-color: #3882f6;
     border-radius: 5px;
-    border: 0px;
     width: 100px;
     padding: 4px;
+    color: white;
+    border-color: white;
 }
 
-.heroright{
+.family{
+    padding-top: 32px;
+    padding-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.images{
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.img{
+    width: 150px;
+}
+
+.ctitle{
+    font-size: 36px;
+    font-weight: bolder;
+    color: #1F2937;
+}
+
+.text{
+    padding-top: 4px;
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+}
+
+#quote{
+    background-color: #E5E7EB;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+#box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#quotetext{
+    font-size: 32px;
+    font-weight: 100;
+    font-style: italic;
+    color: #1f2937;
+}
+
+#quotename{
+    font-size: 36px;
+    font-weight: bold;
+    color: #1f2937;
+    text-align: right;
+}
+
+#link{
+    padding-top: 64px;
+    padding-bottom: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#button{
+    background-color: #3882f6;
+    border-radius: 15px;
+    border: 0px;
+    padding: 32px 32px 32px 32px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 128px;
+    padding-right: 128px;
+}
+
+#bleft{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: white;
+}
+
+#bhead{
+    font-size: 20px;
+}
+
+#btext{
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+#bright{
+    display: flex;
+    align-items: center;
+}
+
+header.button{
+    border-width: 0px;
 }
