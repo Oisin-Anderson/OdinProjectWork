@@ -60,11 +60,6 @@ function game(player){
     score.textContent = "P: "+count[0]+",D: "+count[1]+",C: "+count[2];
     div.appendChild(score);
     container.appendChild(div);
-
-    /*console.log(i + " Games Played");
-    console.log("Player: "+ count[0]);
-    console.log("Draw: "+ count[1]);
-    console.log("Computer: "+ count[2]);*/
 }
 
 window.onload = function(){
