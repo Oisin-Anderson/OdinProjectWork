@@ -29,13 +29,23 @@ button{
     transition-duration: 0.4s;
 }
 
-button:hover {
-    background-color: #4CAF50; /* Green */
+.number:hover {
+    background-color: #4CAF50;
     color: white;
 }
 
-button:active {
+.number:active {
     background-color: #3e8e41;
+    transform: translateY(2px);
+}
+
+.operator:hover {
+    background-color: #af4c4c;
+    color: white;
+}
+
+.operator:active {
+    background-color: #8e3e3e;
     transform: translateY(2px);
 }
 
