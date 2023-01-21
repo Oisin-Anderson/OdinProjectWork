@@ -39,12 +39,12 @@ button{
     transform: translateY(2px);
 }
 
-.operator:hover {
+.operator:hover, #back:hover, #dot:hover {
     background-color: #af4c4c;
     color: white;
 }
 
-.operator:active {
+.operator:active, #back:active, #dot:active {
     background-color: #8e3e3e;
     transform: translateY(2px);
 }

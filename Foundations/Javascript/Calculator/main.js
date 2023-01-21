@@ -6,20 +6,57 @@ $$ = function(id){
 }
 var numbers = [];
 var operators = ["blank"];
-var number = 0;
+var number = "";
+
+function round(float){
+    return parseInt(float * 1000) /1000.0;
+}
+
+function clear(){
+    numbers = []
+    operators = ["blank"];
+    $("result").innerHTML = "0";
+    number = ""
+    $("dot").disabled = false;
+}
 
 function nums(i){
     var numerator = $$("number");
-    number += numerator[i].innerHTML;
+    var numb = numerator[i].innerHTML;
+    if(numb == "B"){
+        let string = number;
+        let check = "";
+        console.log(string);
+        string = string.substring(0, string.length-1);
+        check = string.substring(string.length-1);
+        console.log(string);
+        $("result").innerHTML = string;
+        number = string;
+        if(check == "."){
+            $("dot").disabled = false;
+        }
+    }else{
+        if(numb == "."){
+            $("dot").disabled = true;
+            number += numb;
+            $("result").innerHTML = number;
+            console.log(number);
+
+        }else{
+            number += numb;
+            $("result").innerHTML = parseFloat(number);
+            console.log(number);
+        }
+    }
 }
 function opps(i){
     var operator = $$("operator");
     var opp = operator[i].getAttribute('id');
-    if(number == 0){
-        numbers.push(parseInt($("result").innerHTML));
-    }
-    else{
-        numbers.push(parseInt(number));
+    console.log(opp);
+    if(number == ""){
+        numbers.push(parseFloat($("result").innerHTML));
+    }else{
+        numbers.push(parseFloat(number));
         console.log(numbers);
         number = 0;
     }
@@ -28,13 +65,9 @@ function opps(i){
         operators.push(opp);
         calculation();
         console.log("Calculation")
-    }
-    else if(opp == "clear"){
-        numbers = []
-        operators = ["blank"];
-        $("result").innerHTML = "0";
-    }
-    else{
+    }else if(opp == "clear"){
+        clear();
+    }else{
         operators.push(opp);
 
     }
@@ -57,13 +90,17 @@ function calculation(){
             
         }
         else if(operators[i] == "div"){
-            result = result/numbers[i];
+            if(result == 0 && numbers[i] == 0){
+                alert("IMPOSSIBLE");
+            }else{
+                result = result/numbers[i];
+            }
         }
         else if(operators[i] == "blank"){
 
         }
         else{
-            $("result").innerHTML = result;
+            $("result").innerHTML = round(result);
             numbers = []
             operators = ["blank"]
         }
@@ -73,14 +110,15 @@ function calculation(){
 
 
 window.onload = function(){
+    clear();
     var numerator = $$("number");
-    for(let i=0;i<10;i++){
+    for(let i=0;i<numerator.length;i++){
         numerator[i].addEventListener("click", function(){
             nums(i);
         });
     }
     var operator = $$("operator");
-    for(let i=0;i<8;i++){
+    for(let i=0;i<operator.length;i++){
         operator[i].addEventListener("click", function(){
             opps(i);
         });
