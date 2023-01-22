@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+#img{
+    background-image: url("background.jpg");
+    width: max-content;
+    height: max-content;
+}
+
+#form{
+    width: 60%;
+    height: 100%;
+}
