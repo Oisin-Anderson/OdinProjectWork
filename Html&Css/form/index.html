@@ -5,17 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Example</title>
+    <link href='https://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
 </head>
 <body>
-    <div id="img">
+    <div id="left">
+        <div id="img">
+            <div id="imgtext">
+                <img src="house.jpg"/>
+                <p>House Lannister</p>
+            </div>
+        </div>
     </div>
     <div id="form">
-        <div id="top">
-            
-        </div>
-        <div id="mid"></div>
-        <div id="bot"></div>
+        <form onsubmit="return checkPassword(this)">
+            <div id="top">
+                <p>Robb Stark is on the march. Enlist now to protect your families, your homes and your childrens future.<br>Enlist now to save the <span>Westerlands</span>.</p>
+                <p>Think about the children</p>
+            </div>
+            <div id="mid">
+                <legend>Sign up Now!</legend>
+                <div id="ftop">
+                    <label for="name">Name
+                    <input id="name" name="name" type="text" required/></label>
+                    <label for="house">House You Serve:
+                    <select name="house" id="house">
+                    <option value="lannister">Lannister</option>
+                    <option value="westerling">Westerling</option>
+                    <option value="clegane">Clegane</option></label>
+                    </select>
+                </div>
+                <div id="fmid">
+                    <label for="email">Email
+                    <input id="email" name="email" type="email" required/></label>
+                    <label for="number">Phone Number
+                    <input id="number" name="number" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/></label>
+                </div>
+                <div id="fbot">
+                    <label for="pwd">Password
+                    <input id="pwd" name="pwd" type="password" minlength="8" maxlength="12" required/></label>
+                    <label for="cpwd">Confirm Password
+                    <input id="cpwd" name="cpwd" type="password" minlength="8" maxlength="12" required/></label>
+                </div>
+            </div>
+            <div id="bot">
+                <input type="submit"></input>
+                <p>Already have an account? <span>Log in</span></p>
+            </div>
+        </form>
     </div>
 </body>
 </html>
