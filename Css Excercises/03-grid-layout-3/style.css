@@ -5,6 +5,10 @@
 
 .container {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: inline-grid;
+  grid-template: 50px ;
 }
 
 .container div {
@@ -17,11 +21,28 @@
 
 .header {
   background-color: #393f4d;
+  display: inline-grid;
+  grid-template: 1fr / 1fr 4fr;
+}
+
+.logo{
+  grid-area: 1 / 1 / 2 / 2;
+}
+.menu{
+  grid-area: 1 / 2 / 2 / 5;
+}
+
+.menu ul{
+  overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu ul,
 .menu li {
   font-size: 16px;
+  float: left;
 }
 
 .sidebar {
