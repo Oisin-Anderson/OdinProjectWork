@@ -1,5 +1,54 @@
+body{
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: inline-grid;
+    grid-template: 1fr 6fr 1fr / 1fr;
+}
+
+#header{
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #board{
     display: inline-grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    gap: 15px;
+}
+
+#footer{
+    background-color: lightblue;
+    display: inline-grid;
+    grid-template: 1fr / 3fr 1fr 4fr 1fr 3fr;
+    grid-template-areas: "a b c d e";
+}
+
+#player1{
+    grid-area: a;
+    display: inline-grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+#buttons{
+    grid-area: c;
+    display: inline-grid;
+    grid-template: 1fr / repeat(4, 1fr);
+}
+
+#player2{
+    grid-area: e;
+    display: inline-grid;
+    grid-template: 1fr / repeat(3, 1fr);
 }
