@@ -8,20 +8,43 @@ $$ = function(id){
 const gameBoard = (() => {
     let moves = ["","","","","","","","",""]
     let turns = 0
-    let symbol = "X"
-    let record = ["","",""]
+    let symbol = "X";
+    let record = [0,0,0]
     let player1 = "X";
     let player2 = "O";
+    let round = 0;
     const restart = () => {
-        record = ["","",""];
+        record = [0,0,0];
         player1 = "X";
         player2 = "O";
+        round = 0;
+        $("record").innerHTML = "0|0|0";
+        $("symbol1").innerHTML = player1;
+        $("symbol2").innerHTML = player2;
         clear();
+    };
+    const nextGame = () => {
+        clear();
+        if(round%2 == 0){
+            player1 = "X";
+            player2 = "O";
+            $("turn1").innerHTML = "Your Move";
+            $("turn2").innerHTML = "Their Move";
+        }else{
+            player1 = "O";
+            player2 = "X";
+            $("turn2").innerHTML = "Your Move";
+            $("turn1").innerHTML = "Their Move";
+        }
+        $("symbol1").innerHTML = player1;
+        $("symbol2").innerHTML = player2;
+
     };
     const clear = () => {
         moves = ["","","","","","","","",""];
         turns = 0;
         symbol = "X";
+        $("winner").innerHTML = "";
         display.start();
     };
     const newTurn = () => turns++;
@@ -60,37 +83,80 @@ const gameBoard = (() => {
     };
     const board = () => moves;
     const checkWin = (symbol) => {
+        let check = 0;
         //Horizontal Win
-        for (let i=0; i<=6; i+=3) {
-            if (moves[i] == symbol &&
-                    moves[i + 1] == symbol &&
-                    moves[i + 2] == symbol)
+        for(let i=0; i<=6; i+=3) {
+            if(moves[i] == symbol && moves[i + 1] == symbol && moves[i + 2] == symbol){
+                check++;
+                $("square"+i).style.color = "white";
+                $("square"+(i+1)).style.color = "white";
+                $("square"+(i+2)).style.color = "white";
                 endGame(symbol);
+            }
         }
 
         //Vertical Win
-        for (let i=0; i<3; i++) {
-            if (moves[i] == symbol &&
-                    moves[i + 3] == symbol &&
-                    moves[i + 6] == symbol)
+        for(let i=0; i<3; i++) {
+            if(moves[i] == symbol && moves[i + 3] == symbol && moves[i + 6] == symbol){
+                check++;
+                $("square"+i).style.color = "white";
+                $("square"+(i+3)).style.color = "white";
+                $("square"+(i+6)).style.color = "white";
                 endGame(symbol);
+            }
         }
 
-        //Diagonal Win
-        if (moves[4] == symbol && ((moves[0] == symbol && moves[8] == symbol) || (moves[6] == symbol && moves[2] == symbol)))
+        //Diagonal Wins
+        if(moves[4] == symbol && moves[0] == symbol && moves[8] == symbol){
+            check++;
+            $("square0").style.color = "white";
+            $("square4").style.color = "white";
+            $("square8").style.color = "white";
             endGame(symbol);
+        }
+        if(moves[4] == symbol && moves[6] == symbol && moves[2] == symbol){
+            check++;
+            $("square2").style.color = "white";
+            $("square4").style.color = "white";
+            $("square6").style.color = "white";
+            endGame(symbol);
+        }
+
+        if(turns == 8 && check == 0){
+            endGame("D");
+        }
     }
     const endGame = (symbol) => {
+        round++;
+        const next = document.createElement('div');
+        const winner = document.createElement('div');
+        next.textContent = "Next Game";
+        next.onclick = function(){gameBoard.nextGame()}
+        next.style.padding = "5px";
+        next.style.backgroundColor = "lightblue";
+        next.style.width = "100px";
+        next.style.display = "flex"
+        next.style.justifyContent = "center"
+        next.style.alignItems = "center"
+        next.style.borderRadius = "5px";
+        next.style.marginBottom = "5px";
+        next.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+        winner.style.backgroundColor = "lightblue";
+        winner.style.padding = "5px";
+        winner.style.borderRadius = "5px";
+        winner.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
         if(player1 == symbol){
             record[0]++;
-            $("winner").innerHTML = "Game Over, Player1 Wins!!!";
+            winner.textContent = "Game Over, Player1 Wins!!!";
         }else if(player2 == symbol){
             record[2]++;
-            $("winner").innerHTML = "Game Over, Player2 Wins!!!";
+            winner.textContent = "Game Over, Player2 Wins!!!";
         }else{
             record[1]++;
-            $("winner").innerHTML = "Game Over, Draw!!!";
+            winner.textContent = "Game Over, Draw!!!";
         }
+        $("winner").appendChild(winner);
+        $("winner").appendChild(next);
 
         if(player1 == "X"){
             player1 = "O";
@@ -100,7 +166,12 @@ const gameBoard = (() => {
             player2 = "O";
         }
 
-        $("record").innerHTML = record[0]+"|"+record[1]+"|"+record[2];
+        let first = record[0]+0;
+        let second = record[1]+0;
+        let third = record[2]+0;
+        $("record").innerHTML = first+"|"+second+"|"+third;
+        const board = $("board");
+        board.style.pointerEvents = "none";
 
 
     }
@@ -112,7 +183,8 @@ const gameBoard = (() => {
         clear,
         checkSpace,
         checkWin,
-        restart
+        restart,
+        nextGame
     };
 })();
 
@@ -121,6 +193,7 @@ const display = (() => {
         console.log("Here");
         $("board").innerHTML = "";
         const board = $("board");
+        board.style.pointerEvents = "all";
         for(let i=0; i<9; i++){
             const div = document.createElement('div');
             div.textContent = " ";
@@ -128,10 +201,10 @@ const display = (() => {
             div.value = i;
             div.id = "square" + i;
             div.style.fontSize = "100px";
-            div.style.backgroundColor = 'red';
+            div.style.backgroundColor = 'lightblue';
             div.style.width = "100px"
             div.style.height = "100px"
-            div.style.border = "5px solid black";
+            div.style.border = "2px solid black";
             div.style.display = "flex";
             div.style.justifyContent = "center";
             div.style.alignItems = "center";
@@ -171,6 +244,6 @@ function startGame(){
 
 window.onload = function(){
     startGame();
-    $("clear").onclick = function(){gameBoard.clear()};
     $("restart").onclick = function(){gameBoard.restart()};
+    $("opponent").onclick = function(){gameBoard.opponent()};
 }
