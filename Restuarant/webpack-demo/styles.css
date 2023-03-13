@@ -34,8 +34,21 @@ body, html{
     width: 100vw;
     height: 90vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.hometext{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.homeintro{
     font-size: 40px;
 }
