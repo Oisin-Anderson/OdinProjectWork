@@ -8,11 +8,13 @@ homeLoad();
 let homeButton = document.querySelector("#home");
 let menuButton = document.querySelector("#menu");
 let contactButton = document.querySelector("#contact");
+let modalButton = document.querySelector("#openModal");
 
 document.addEventListener('DOMContentLoaded', function () {
     homeButton = document.querySelector("#home");
     menuButton = document.querySelector("#menu");
     contactButton = document.querySelector("#contact");
+    modalButton = document.querySelector("#openModal");
 } );
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -32,3 +34,21 @@ document.addEventListener('DOMContentLoaded', function () {
         contactLoad();
     });
 } );
+
+document.addEventListener('DOMContentLoaded', function () {
+    modalButton.addEventListener("click", function(){
+        modal();
+    });
+} );
+
+
+function modal(){
+    let modal = document.querySelector("#videoModal");
+    modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
