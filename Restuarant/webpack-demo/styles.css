@@ -3,6 +3,7 @@ body, html{
     height: 100vh;
     margin: 0;
     font-size: 20px;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
 }
 
 #content{
@@ -99,4 +100,77 @@ body, html{
     padding: 2vh;
     border-radius: 5px;
     background-color: white;
+}
+
+.menubody{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+}
+
+.menu{
+    display: inline-grid;
+    grid-template: 1fr 1fr/ 1fr 1fr 1fr;
+    grid-template-areas: "a b c" "d e f";
+    text-align: left;
+    column-gap: 1vw;
+    row-gap: 5vh;
+    padding: 5vh;
+    width: 75vw;
+    background-color: aqua;
+}
+
+.tleft{
+    background-color: white;
+    grid-area: a;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.tcenter{
+    background-color: white;
+    grid-area: b;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.tright{
+    background-color: white;
+    grid-area: c;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.bleft{
+    background-color: white;
+    grid-area: d;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.bcenter{
+    background-color: white;
+    grid-area: e;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.bright{
+    background-color: white;
+    grid-area: f;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.menutitle{
+    text-align: center;
 }
