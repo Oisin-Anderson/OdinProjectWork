@@ -1,6 +1,8 @@
 const homeLoad = () => {
     let content = document.querySelector("#content");
-    content.innerHTML = "";
+    while(content.children.length > 1){
+        content.children[1].remove();
+    }
     let homeimg = document.createElement('div');
     let hometext = document.createElement('div');
     let homeintro = document.createElement('div');
