@@ -43,12 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function modal(){
-    let modal = document.querySelector("#videoModal");
+    const modal = document.querySelector("#videoModal");
     modal.style.display = "block";
 }
 
 window.onclick = function(event) {
+    const modal = document.querySelector("#modalContent");
+    const display = document.querySelector("#videoModal");
     if (event.target == modal) {
-        modal.style.display = "none";
+        display.style.display = "none";
     }
 }

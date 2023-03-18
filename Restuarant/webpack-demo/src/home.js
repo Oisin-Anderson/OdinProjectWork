@@ -21,12 +21,15 @@ const homeLoad = () => {
     homeimg.appendChild(modalbutton);
 
     let modal = document.createElement('div');
-    modal.classList.add("modal");
-    modal.id = "videomodal";
-    let modalContent = document.createElement('div');
-    modalContent.textContent = "Hello World";
-    modalContent.classList.add("modalContent");
-    modal.appendChild(modalContent);
+    modal.id = "videoModal";
+    let mcontent = document.createElement('div');
+    mcontent.id = "modalContent";
+    let iframe = document.createElement('iframe');
+    iframe.setAttribute("src", "https://www.youtube.com/embed/4Z55di2gEXM");
+    iframe.id = "iframe";
+    console.log(iframe.innerHTML);
+    mcontent.appendChild(iframe);
+    modal.appendChild(mcontent);
 
 
     content.appendChild(homeimg);
