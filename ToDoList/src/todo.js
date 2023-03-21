@@ -1,7 +1,9 @@
+import { loadTodosBrief } from './dom';
+
 let list = [];
 
-function todo(id, pid, title, desc, due, prior, check){
-    this.id = id;
+function todo(pid, title, desc, due, prior, check){
+    this.id = nextId();
     this.pid = pid;
     this.title = title;
     this.desc = desc
@@ -13,8 +15,18 @@ function todo(id, pid, title, desc, due, prior, check){
     }
 }
 
-function createTodo(id, pid, title, desc, due, prior, check){
-    let obj = new todo(id, pid, title, desc, due, prior, check);
+function nextId(){
+    refreshTodos();
+    if(list.length == 0){
+        return 1;
+    }
+    else{
+        return (list[list.length - 1].id) + 1;
+    }
+}
+
+function createTodo(pid, title, desc, due, prior, check){
+    let obj = new todo(pid, title, desc, due, prior, check);
     addTodo(obj);
 }
 
@@ -61,8 +73,22 @@ function getTodo(id){
     }
 }
 
+function getTodosBrief(id){
+    let brief = [];
+    refreshTodos();
+    for(let i=0; i<list.length; i++){
+        if(list[i].pid == id){
+            brief.push(list[i]);
+        }
+    }
+    console.log(brief);
+    loadTodosBrief(brief);
+
+}
+
 
 export { createTodo };
 export { deleteTodo };
 export { clearTodos };
 export { getTodo };
+export { getTodosBrief };
