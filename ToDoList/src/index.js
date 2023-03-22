@@ -2,9 +2,8 @@ import { createTodo } from './todo';
 import { deleteTodo } from './todo';
 import { clearTodos } from './todo';
 import { getTodo } from './todo';
-import { createProject } from './project';
-import { getAllProjects } from './project';
-import { getProject } from './project';
+import { createProject, getAllProjects, getProject } from './project';
+import { createProjectModal } from './dom';
 
 
 window.onload = function(){
@@ -14,13 +13,27 @@ window.onload = function(){
     //createProject("Plenty Of Fish", "Tinder App", "06/07/19", 4, false);
     //getTodo(1);
 
-    getAllProjects();
+    if(localStorage.getItem("Projects") == null){
+        console.log("Default Project")
+    }else{
+        getAllProjects();
+        createProjectModal();
+
+    }
+
+    
+    const form = document.getElementById("projectform");
+    form.addEventListener('submit', function(){
+        const display = document.querySelector(".projectModal");
+        display.style.display = "none";
+        createProject();
+    });
 }
 
 
 
 window.onclick = function(event) {
-    const modal = document.querySelector(".modalContent");
+    const modal = document.querySelector(".modalBack");
     const display = document.querySelector(".projectModal");
     if (event.target == modal) {
         display.style.display = "none";

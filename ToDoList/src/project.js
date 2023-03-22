@@ -3,13 +3,13 @@ import { loadProject } from './dom';
 
 let list = [];
 
-function project(title, desc, due, prior, check){
+function project(title, desc, due, prior){
     this.id = nextId();
     this.title = title;
     this.desc = desc
     this.due = due;
     this.prior = prior;
-    this.check = check;
+    this.check = false;
     this.print = function(){
         console.log(title);
     }
@@ -26,9 +26,20 @@ function nextId(){
     }
 }
 
-function createProject(title, desc, due, prior, check){
-    let obj = new project(title, desc, due, prior, check);
-    addProject(obj);
+function createProject(event){
+    const form = document.getElementById("projectform");
+    const formData = new FormData(form);
+    event.preventDefault();
+    console.log(Object.fromEntries(formData));
+    let obj = Object.fromEntries(formData);
+
+    const entry = new project();
+    entry.title = obj.Title;
+    entry.desc = obj.Description;
+    entry.due = obj.Due;
+    entry.prior = obj.Priority;
+    
+    addProject(entry);
 }
 
 function addProject(obj){
@@ -37,6 +48,7 @@ function addProject(obj){
 
     localStorage.setItem("Projects", JSON.stringify(list));
     console.log(JSON.parse(localStorage.getItem("Projects")));
+    refreshProjects();
 }
 
 function refreshProjects(){
@@ -47,6 +59,7 @@ function refreshProjects(){
         list = JSON.parse(localStorage.getItem("Projects"));
         console.log(JSON.parse(localStorage.getItem("Projects")));
     }
+    loadNav(list);
 }
 
 function deleteProject(id){
@@ -82,7 +95,6 @@ function getProject(id){
 
 function getAllProjects(){
     refreshProjects();
-    loadNav(list);
 }
 
 

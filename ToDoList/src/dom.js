@@ -7,6 +7,7 @@ let $ = function(id){
 
 function loadNav(list){
     let content = document.querySelector("#content");
+    content.innerHTML = "";
     let nav = document.createElement('div');
     let main = document.createElement('div');
     nav.classList.add("nav");
@@ -30,7 +31,6 @@ function loadNav(list){
     
     content.appendChild(nav);
     content.appendChild(main);
-    createProjectModal();
 }
 
 function loadProject(obj){
@@ -75,27 +75,32 @@ function createProjectModal(){
     let back = document.createElement('div');
     back.classList.add("modalBack");
 
-    let form = document.createElement('form');
-    form.onsubmit = function(){createProject(FormData)};
     let content = document.createElement('div');
     content.classList.add("projMContent");
+    let form = document.createElement('form');
+    form.setAttribute("id", "projectform");
+    let fhead = document.createElement('div');
+    fhead.textContent = "New Project";
+    fhead.classList.add("fhead");
+    content.appendChild(fhead);
 
-    let inputs = ["title", "desc", "due", "prior"];
+    let inputs = ["Title", "Description", "Due", "Priority"];
     for(let i=0; i<inputs.length; i++){
         let input = document.createElement('input');
         input.placeholder = inputs[i];
         input.name = inputs[i];
         input.setAttribute("type", "text");
-        content.appendChild(input);
+        form.appendChild(input);
     }
     let submit = document.createElement('button');
     submit.type = "submit";
-    content.appendChild(submit);
-    form.appendChild(content);
+    submit.textContent = "Create Project";
+    form.appendChild(submit);
+    content.appendChild(form);
 
 
 
-    back.appendChild(form);
+    back.appendChild(content);
     modal.appendChild(back);
     main.appendChild(modal)
 }
@@ -108,3 +113,4 @@ function loadProjectModal(){
 export { loadNav };
 export { loadProject };
 export { loadTodosBrief };
+export { createProjectModal };
