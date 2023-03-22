@@ -3,7 +3,7 @@ import { deleteTodo } from './todo';
 import { clearTodos } from './todo';
 import { getTodo } from './todo';
 import { createProject, getAllProjects, getProject } from './project';
-import { createProjectModal } from './dom';
+import { createProjectModal, createContent } from './dom';
 
 
 window.onload = function(){
@@ -13,21 +13,19 @@ window.onload = function(){
     //createProject("Plenty Of Fish", "Tinder App", "06/07/19", 4, false);
     //getTodo(1);
 
+    createContent();
+
     if(localStorage.getItem("Projects") == null){
         console.log("Default Project")
     }else{
-        getAllProjects();
         createProjectModal();
+        getAllProjects();
 
     }
 
-    
-    const form = document.getElementById("projectform");
-    form.addEventListener('submit', function(){
-        const display = document.querySelector(".projectModal");
-        display.style.display = "none";
-        createProject();
-    });
+    const form = document.querySelector('#projectform');
+    form.addEventListener('submit', (event) => handleSubmit(form))
+
 }
 
 
@@ -37,5 +35,17 @@ window.onclick = function(event) {
     const display = document.querySelector(".projectModal");
     if (event.target == modal) {
         display.style.display = "none";
+        const body = document.querySelector("body");
+        body.style.overflow = "auto";
     }
+}
+
+const handleSubmit = (form) => {
+    event.preventDefault()
+    const display = document.querySelector(".projectModal");
+    display.style.display = "none";
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
+    createProject();
+    form.reset();
 }

@@ -5,13 +5,20 @@ let $ = function(id){
     return document.getElementById(id);
 }
 
-function loadNav(list){
+function createContent(){
     let content = document.querySelector("#content");
     content.innerHTML = "";
     let nav = document.createElement('div');
     let main = document.createElement('div');
     nav.classList.add("nav");
     main.classList.add("main");
+    content.appendChild(nav);
+    content.appendChild(main);
+}
+
+function loadNav(list){
+    let nav = document.querySelector(".nav");
+    nav.innerHTML = "";
     let nheading = document.createElement('h1');
     nheading.textContent = "Projects";
     nav.appendChild(nheading);
@@ -29,12 +36,11 @@ function loadNav(list){
     create.textContent = "New Project";
     nav.appendChild(create);
     
-    content.appendChild(nav);
-    content.appendChild(main);
 }
 
 function loadProject(obj){
     let main = document.querySelector(".main");
+    main.innerHTML = "";
     let title = document.createElement('div');
     let desc = document.createElement('div');
     let due = document.createElement('div');
@@ -69,7 +75,7 @@ function loadTodosBrief(list){
 }
 
 function createProjectModal(){
-    let main = document.querySelector(".main");
+    let container = document.querySelector("#content");
     let modal = document.createElement('div');
     modal.classList.add("projectModal")
     let back = document.createElement('div');
@@ -77,13 +83,13 @@ function createProjectModal(){
 
     let content = document.createElement('div');
     content.classList.add("projMContent");
-    let form = document.createElement('form');
-    form.setAttribute("id", "projectform");
     let fhead = document.createElement('div');
     fhead.textContent = "New Project";
     fhead.classList.add("fhead");
     content.appendChild(fhead);
 
+    let form = document.createElement('form');
+    form.setAttribute("id", "projectform");
     let inputs = ["Title", "Description", "Due", "Priority"];
     for(let i=0; i<inputs.length; i++){
         let input = document.createElement('input');
@@ -98,19 +104,21 @@ function createProjectModal(){
     form.appendChild(submit);
     content.appendChild(form);
 
-
-
     back.appendChild(content);
     modal.appendChild(back);
-    main.appendChild(modal)
+    container.appendChild(modal)
 }
 
 function loadProjectModal(){
     const modal = document.querySelector(".projectModal");
     modal.style.display = "block";
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
 }
 
 export { loadNav };
 export { loadProject };
 export { loadTodosBrief };
 export { createProjectModal };
+export { createContent };

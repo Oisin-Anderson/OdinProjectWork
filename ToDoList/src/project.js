@@ -26,10 +26,9 @@ function nextId(){
     }
 }
 
-function createProject(event){
+function createProject(){
     const form = document.getElementById("projectform");
     const formData = new FormData(form);
-    event.preventDefault();
     console.log(Object.fromEntries(formData));
     let obj = Object.fromEntries(formData);
 
