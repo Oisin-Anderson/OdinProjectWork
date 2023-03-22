@@ -1,4 +1,4 @@
-import { getProject } from "./project";
+import { createProject, getProject } from "./project";
 import { getTodo, getTodosBrief } from "./todo";
 
 let $ = function(id){
@@ -21,9 +21,16 @@ function loadNav(list){
         project.onclick = function(){getProject(this.value)};
         nav.appendChild(project);
     }
+
+    let create = document.createElement('div');
+    create.classList.add("createProject");
+    create.onclick = function(){loadProjectModal()};
+    create.textContent = "New Project";
+    nav.appendChild(create);
     
     content.appendChild(nav);
     content.appendChild(main);
+    createProjectModal();
 }
 
 function loadProject(obj){
@@ -59,6 +66,43 @@ function loadTodosBrief(list){
         console.log(todos);
         main.appendChild(todos);
     }
+}
+
+function createProjectModal(){
+    let main = document.querySelector(".main");
+    let modal = document.createElement('div');
+    modal.classList.add("projectModal")
+    let back = document.createElement('div');
+    back.classList.add("modalBack");
+
+    let form = document.createElement('form');
+    form.onsubmit = function(){createProject(FormData)};
+    let content = document.createElement('div');
+    content.classList.add("projMContent");
+
+    let inputs = ["title", "desc", "due", "prior"];
+    for(let i=0; i<inputs.length; i++){
+        let input = document.createElement('input');
+        input.placeholder = inputs[i];
+        input.name = inputs[i];
+        input.setAttribute("type", "text");
+        content.appendChild(input);
+    }
+    let submit = document.createElement('button');
+    submit.type = "submit";
+    content.appendChild(submit);
+    form.appendChild(content);
+
+
+
+    back.appendChild(form);
+    modal.appendChild(back);
+    main.appendChild(modal)
+}
+
+function loadProjectModal(){
+    const modal = document.querySelector(".projectModal");
+    modal.style.display = "block";
 }
 
 export { loadNav };

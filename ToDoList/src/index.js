@@ -16,3 +16,13 @@ window.onload = function(){
 
     getAllProjects();
 }
+
+
+
+window.onclick = function(event) {
+    const modal = document.querySelector(".modalContent");
+    const display = document.querySelector(".projectModal");
+    if (event.target == modal) {
+        display.style.display = "none";
+    }
+}
